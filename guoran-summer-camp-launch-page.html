@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>国然教育 2026 暑期夏令营发售方案</title>
+  <style>
+    :root {
+      --ink: #182033;
+      --muted: #657083;
+      --line: #dfe5ed;
+      --paper: #fbfaf6;
+      --white: #ffffff;
+      --navy: #203a5f;
+      --blue: #2f6ea3;
+      --gold: #c98d2d;
+      --green: #32826a;
+      --red: #b95044;
+      --shadow: 0 16px 45px rgba(24, 32, 51, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(223, 229, 237, 0.9);
+      background: rgba(251, 250, 246, 0.92);
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar-inner {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 64px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .mark {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy), var(--gold));
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav a:hover { color: var(--navy); }
+
+    section {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 72px 0;
+    }
+
+    .hero {
+      width: 100%;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      padding: 78px 0 54px;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(19, 35, 59, 0.94), rgba(32, 58, 95, 0.77) 47%, rgba(201, 141, 45, 0.28)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=82") center/cover;
+    }
+
+    .hero-inner {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.72fr);
+      align-items: end;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #f3d79f;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 0;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: #f3d79f;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 24px 0 0;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 19px;
+    }
+
+    .hero-panel {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.13);
+      backdrop-filter: blur(14px);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    .hero-kpi {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .hero-kpi div {
+      min-height: 92px;
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .hero-kpi strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1.15;
+      color: #fff;
+    }
+
+    .hero-kpi span {
+      display: block;
+      margin-top: 6px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 13px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.7fr) minmax(260px, 0.3fr);
+      gap: 36px;
+      align-items: end;
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .tag {
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--navy);
+      background: #fff;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .metric,
+    .card,
+    .phase,
+    .offer,
+    .theme,
+    .check {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 10px 26px rgba(24, 32, 51, 0.06);
+    }
+
+    .metric {
+      min-height: 132px;
+      padding: 18px;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--navy);
+      font-size: 28px;
+      line-height: 1.15;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--line);
+    }
+
+    .phase {
+      border: 0;
+      border-radius: 0;
+      padding: 20px;
+      min-height: 210px;
+      box-shadow: none;
+    }
+
+    .phase time {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--navy);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .phase h3 {
+      margin: 18px 0 10px;
+      font-size: 19px;
+      line-height: 1.25;
+    }
+
+    .phase p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .offer {
+      overflow: hidden;
+    }
+
+    .offer .band {
+      min-height: 118px;
+      padding: 24px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+    }
+
+    .offer:nth-child(2) .band {
+      background: linear-gradient(135deg, var(--green), #7f9f62);
+    }
+
+    .offer h3 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.15;
+    }
+
+    .offer .price {
+      margin-top: 8px;
+      color: rgba(255, 255, 255, 0.83);
+      font-weight: 700;
+    }
+
+    .offer ul,
+    .card ul,
+    .check ul {
+      margin: 0;
+      padding: 22px 24px 24px 42px;
+      color: var(--muted);
+    }
+
+    li { margin: 7px 0; }
+
+    .strategy {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 23px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card .number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--gold);
+      font-weight: 900;
+    }
+
+    .ops-grid {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 18px;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    th, td {
+      padding: 15px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--navy);
+      background: #eef3f7;
+      font-size: 14px;
+    }
+
+    td {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .tracks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .theme {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .theme::before {
+      content: "";
+      display: block;
+      width: 56px;
+      height: 4px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      background: var(--gold);
+    }
+
+    .theme h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .theme p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .theme strong {
+      color: var(--navy);
+    }
+
+    .live-days {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .day {
+      min-height: 330px;
+      padding: 24px;
+      color: #fff;
+      background: var(--navy);
+      border-radius: 8px;
+    }
+
+    .day:nth-child(2) { background: var(--green); }
+    .day:nth-child(3) { background: var(--red); }
+
+    .day h3 {
+      margin: 0 0 12px;
+      font-size: 25px;
+      line-height: 1.18;
+    }
+
+    .day p {
+      margin: 0 0 18px;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .day ol {
+      margin: 0;
+      padding-left: 20px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .closing {
+      width: 100%;
+      padding: 80px 0;
+      color: #fff;
+      background: #182033;
+    }
+
+    .closing-inner {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .closing h2 { color: #fff; }
+    .closing p { color: rgba(255, 255, 255, 0.74); }
+
+    .check {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.16);
+      box-shadow: none;
+    }
+
+    .check ul { color: rgba(255, 255, 255, 0.83); }
+
+    @media (max-width: 980px) {
+      nav { display: none; }
+      .hero-inner,
+      .section-head,
+      .grid-2,
+      .strategy,
+      .ops-grid,
+      .closing-inner {
+        grid-template-columns: 1fr;
+      }
+      .tag { justify-self: start; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+      .tracks,
+      .live-days { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        min-height: auto;
+        padding: 66px 0 48px;
+      }
+      section {
+        width: min(100% - 28px, 1160px);
+        padding: 52px 0;
+      }
+      .topbar-inner,
+      .hero-inner,
+      .closing-inner {
+        width: min(100% - 28px, 1160px);
+      }
+      .hero-kpi,
+      .metrics,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 42px; }
+      .hero p { font-size: 17px; }
+      .offer h3 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="返回顶部"><span class="mark">国</span><span>国然教育发售方案</span></a>
+      <nav aria-label="页面导航">
+        <a href="#goals">目标</a>
+        <a href="#timeline">节奏</a>
+        <a href="#offer">产品</a>
+        <a href="#internal">内部发售</a>
+        <a href="#external">外部发售</a>
+        <a href="#execution">执行</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">2026 暑期夏令营发售策划案</div>
+          <h1>国然教育暑期夏令营增长发售方案</h1>
+          <p>以老学员内部发售建立第一波成交势能，再用三天公开课承接全量私域、公域和渠道流量，完成北京营与湖南营的联合转化。</p>
+        </div>
+        <aside class="hero-panel" aria-label="核心目标">
+          <h2>核心成交目标</h2>
+          <div class="hero-kpi">
+            <div><strong>53.8万</strong><span>总营收目标</span></div>
+            <div><strong>60人</strong><span>双营满招目标</span></div>
+            <div><strong>15-20人</strong><span>内部发售目标</span></div>
+            <div><strong>30-40人</strong><span>外部发售目标</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <section id="goals">
+      <div class="section-head">
+        <div>
+          <h2>目标不是单场成交，而是两阶段造势</h2>
+          <p class="lead">先用 200 名老学员做信任启动，再用 3600+ 私域与公域流量做规模化转化。</p>
+        </div>
+        <div class="tag">负责人：成斌老师 / 王念江校长</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><strong>30人</strong><span>北京营目标，预计 49.9 万</span></div>
+        <div class="metric"><strong>30人</strong><span>湖南营目标，预计 39.9 万</span></div>
+        <div class="metric"><strong>300-500人</strong><span>外部直播课报名目标</span></div>
+        <div class="metric"><strong>200-300人</strong><span>直播课专属群沉淀目标</span></div>
+        <div class="metric"><strong>100-200人</strong><span>公域新增线索目标</span></div>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <div class="section-head">
+        <div>
+          <h2>从筹备到追单的 27 天节奏</h2>
+          <p class="lead">用明确节点压实物料、预热、内部发售、外部公开课和追单收尾。</p>
+        </div>
+        <div class="tag">5.27-6.22</div>
+      </div>
+      <div class="timeline">
+        <article class="phase">
+          <time>5.27-6.3</time>
+          <h3>物料筹备期</h3>
+          <p>主视觉、详情长图、发售信、见证素材、定价优惠、平台配置、短视频脚本全部准备就绪。</p>
+        </article>
+        <article class="phase">
+          <time>6.4-6.9</time>
+          <h3>预热启动期</h3>
+          <p>朋友圈种草、短视频发布、老学员 1v1 预沟通，逐步推进至内部发售会邀约。</p>
+        </article>
+        <article class="phase">
+          <time>6.10</time>
+          <h3>内部发售日</h3>
+          <p>老学员线上发售会，当天锁单，形成首批成交战报和后续外部发售背书。</p>
+        </article>
+        <article class="phase">
+          <time>6.11-6.15</time>
+          <h3>外部蓄水期</h3>
+          <p>内部战报、公域短视频、直播课预告、专属社群，把兴趣用户集中到直播课。</p>
+        </article>
+        <article class="phase">
+          <time>6.16-6.18</time>
+          <h3>外部发售期</h3>
+          <p>三天直播课递进成交：痛点唤醒、方案呈现、限时成交。</p>
+        </article>
+        <article class="phase">
+          <time>6.18-6.22</time>
+          <h3>追单收尾期</h3>
+          <p>1v1 跟进、异议处理、限时截止提醒，完成未付款与犹豫用户转化。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="offer">
+      <div class="section-head">
+        <div>
+          <h2>两个营，两个成交理由</h2>
+          <p class="lead">北京营强调荣耀感与国家仪式，湖南营强调领袖气质与志向塑造。</p>
+        </div>
+        <div class="tag">双营联报可做高客单承接</div>
+      </div>
+      <div class="grid-2">
+        <article class="offer">
+          <div class="band">
+            <h3>北京营·荣耀觉醒</h3>
+            <div class="price">目标：30人 / 49.9万</div>
+          </div>
+          <ul>
+            <li>以天安门升旗手 IP 和荣耀教育为核心信任资产。</li>
+            <li>适合希望孩子建立荣誉感、责任感、使命感的家庭。</li>
+            <li>直播间建议价：9980 限时 9480。</li>
+          </ul>
+        </article>
+        <article class="offer">
+          <div class="band">
+            <h3>湖南营·领袖立志</h3>
+            <div class="price">目标：30人 / 39.9万</div>
+          </div>
+          <ul>
+            <li>以立志教育、品格塑造和领袖体验为核心卖点。</li>
+            <li>适合孩子缺目标、缺韧性、缺行动感的家庭。</li>
+            <li>直播间建议价：7980 限时 7480。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="internal">
+      <div class="section-head">
+        <div>
+          <h2>内部发售：先锁定铁杆，再制造战报</h2>
+          <p class="lead">内部发售不是只为了当天成交，更重要的是获得第一批信任样本，服务外部公域转化。</p>
+        </div>
+        <div class="tag">6.4-6.10</div>
+      </div>
+      <div class="strategy">
+        <article class="card">
+          <div class="number">1</div>
+          <h3>用户分层</h3>
+          <p>从老学员、复购意向家庭、关系强信任用户中筛出高意向名单，优先 1v1 触达。</p>
+        </article>
+        <article class="card">
+          <div class="number">2</div>
+          <h3>预沟通 SOP</h3>
+          <p>先聊孩子现状和暑期安排，再导入营地价值，最后邀约 6.10 发售会。</p>
+        </article>
+        <article class="card">
+          <div class="number">3</div>
+          <h3>发售会流程</h3>
+          <p>90 分钟完成痛点共鸣、王校背书、产品介绍、见证展示、福利报价与现场锁单。</p>
+        </article>
+        <article class="card">
+          <div class="number">4</div>
+          <h3>成交后造势</h3>
+          <p>当天输出报名战报、家长反馈、名额进度，为 6.11 之后的外部蓄水提供素材。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="external">
+      <div class="section-head">
+        <div>
+          <h2>外部发售：三天公开课递进成交</h2>
+          <p class="lead">公开课主题建议三选一，选定后贯穿海报、朋友圈、短视频、直播间标题与群运营。</p>
+        </div>
+        <div class="tag">6.11-6.18</div>
+      </div>
+      <div class="tracks">
+        <article class="theme">
+          <h3>唤醒少年</h3>
+          <p><strong>优势：</strong>传播力强、陌生家长秒懂，适合公域引流和海报冲击。</p>
+        </article>
+        <article class="theme">
+          <h3>少年，请抬头</h3>
+          <p><strong>优势：</strong>情感共鸣强，适合私域转化和王校温度感表达。</p>
+        </article>
+        <article class="theme">
+          <h3>点燃少年志</h3>
+          <p><strong>优势：</strong>文化厚度与热血感强，两营通用，适合做主视觉大主题。</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>直播课内容结构</h2>
+          <p class="lead">三天从痛点到方案再到报价，情绪、信任、产品价值和紧迫感逐层推进。</p>
+        </div>
+        <div class="tag">20:00-21:00</div>
+      </div>
+      <div class="live-days">
+        <article class="day">
+          <h3>Day 1：痛点唤醒</h3>
+          <p>你的孩子正在失去什么？</p>
+          <ol>
+            <li>王校身份和故事开场</li>
+            <li>青少年三大危机：无信仰、无目标、无韧性</li>
+            <li>分析军训和普通研学效果不足的原因</li>
+            <li>引出信仰教育与品格塑造</li>
+          </ol>
+        </article>
+        <article class="day">
+          <h3>Day 2：方案呈现</h3>
+          <p>7 天改变一个孩子的底层密码</p>
+          <ol>
+            <li>回顾痛点，引出解决方案</li>
+            <li>讲王校 26 年教育心得</li>
+            <li>揭秘北京营与湖南营设计亮点</li>
+            <li>展示往期学员蜕变故事</li>
+          </ol>
+        </article>
+        <article class="day">
+          <h3>Day 3：限时成交</h3>
+          <p>今晚是唯一的机会</p>
+          <ol>
+            <li>总结前两天价值</li>
+            <li>公布价格与直播间福利</li>
+            <li>处理安全、效果、退费、孩子不愿意等异议</li>
+            <li>实时播报名额与倒计时</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="execution">
+      <div class="section-head">
+        <div>
+          <h2>关键物料与执行排期</h2>
+          <p class="lead">把发售动作拆成物料、平台、内容、邀约和社群五条线，避免临近发售时补作业。</p>
+        </div>
+        <div class="tag">5.30 / 6.2 / 6.3 三个检查点</div>
+      </div>
+      <div class="ops-grid">
+        <div class="card">
+          <h3>优先完成项</h3>
+          <ul>
+            <li>主视觉海报、活动预告海报</li>
+            <li>两个营详情长图或公众号推文</li>
+            <li>完整发售信与客户见证素材包</li>
+            <li>早鸟、团报、赠品与联报方案</li>
+            <li>星橙知道平台课程页、支付、优惠券、报名表单</li>
+          </ul>
+        </div>
+        <div class="table-wrap" aria-label="执行表">
+          <table>
+            <thead>
+              <tr>
+                <th>日期</th>
+                <th>朋友圈</th>
+                <th>短视频 / 公域</th>
+                <th>私域动作</th>
+                <th>目标</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>6.4</td>
+                <td>教育痛点 + 王校故事</td>
+                <td>发布第 1 条短视频</td>
+                <td>老学员预沟通启动</td>
+                <td>建立关注</td>
+              </tr>
+              <tr>
+                <td>6.7-6.9</td>
+                <td>见证、倒计时、王校金句</td>
+                <td>发布第 3 条短视频</td>
+                <td>邀约发售会，最后一轮确认</td>
+                <td>拉满到场</td>
+              </tr>
+              <tr>
+                <td>6.11-6.15</td>
+                <td>内部战报、见证、直播课预告</td>
+                <td>教育痛点、王校故事、学员蜕变</td>
+                <td>建群、群内倒计时、1v1 邀约</td>
+                <td>直播课蓄水</td>
+              </tr>
+              <tr>
+                <td>6.18-6.22</td>
+                <td>名额进度、截止提醒、成交见证</td>
+                <td>直播精华切片</td>
+                <td>追单、异议处理、付款提醒</td>
+                <td>收尾转化</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="closing">
+      <div class="closing-inner">
+        <div>
+          <h2>本次发售的关键，不是讲清夏令营，而是让家长相信孩子值得被重新点燃。</h2>
+          <p>方案建议以“唤醒少年 / 少年，请抬头 / 点燃少年志”三选一作为统一传播主题，再围绕王校 IP、孩子成长痛点、往期见证和限时福利形成一套连续的成交叙事。</p>
+        </div>
+        <div class="check">
+          <ul>
+            <li>5月30日：主海报、详情图、发售信、见证素材、定价方案、平台配置完成。</li>
+            <li>6月2日：朋友圈文案库、短视频、倒计时海报、邀请函完成。</li>
+            <li>6月3日：发售会脚本、私信话术、直播课大纲、报名链接、社群 SOP 全部就绪。</li>
+            <li>6月10日：内部发售锁定首批成交，并转化为外部发售战报素材。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
