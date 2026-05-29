@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>国然教育 30 天陪跑执行路线图</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #657085;
+      --soft: #f5f3ea;
+      --paper: #fbfaf6;
+      --white: #ffffff;
+      --line: #dfe4ec;
+      --navy: #203a5f;
+      --blue: #3275a8;
+      --gold: #c88b2f;
+      --green: #2f8069;
+      --red: #b75347;
+      --shadow: 0 16px 45px rgba(23, 32, 51, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.55;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+    }
+
+    .hero {
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(18, 31, 50, 0.94), rgba(32, 58, 95, 0.78), rgba(32, 58, 95, 0.22)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=82") center/cover;
+    }
+
+    .hero-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 42px 0 34px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 36px;
+      align-items: end;
+    }
+
+    .brand-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 34px;
+      color: rgba(255, 255, 255, 0.86);
+      font-weight: 800;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--gold), var(--green));
+      font-weight: 900;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #f3d79f;
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: #f3d79f;
+    }
+
+    h1 {
+      max-width: 830px;
+      margin: 0;
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 18px;
+    }
+
+    .score-card {
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .score-card h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+
+    .progress-ring {
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .ring {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(#f3d79f var(--progress), rgba(255, 255, 255, 0.2) 0);
+    }
+
+    .ring span {
+      width: 76px;
+      height: 76px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(23, 32, 51, 0.72);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .score-meta strong {
+      display: block;
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .score-meta small {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 9;
+      border-bottom: 1px solid var(--line);
+      background: rgba(251, 250, 246, 0.94);
+      backdrop-filter: blur(14px);
+    }
+
+    .toolbar-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 74px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 8px 0;
+    }
+
+    .chip {
+      min-height: 38px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      background: #fff;
+      white-space: nowrap;
+      font-weight: 800;
+    }
+
+    .chip.active {
+      color: #fff;
+      border-color: var(--navy);
+      background: var(--navy);
+    }
+
+    .search {
+      width: 260px;
+      min-height: 40px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: #fff;
+      outline: none;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 38px 0 72px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .metric,
+    .day-card,
+    .panel,
+    .detail-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 10px 28px rgba(23, 32, 51, 0.06);
+    }
+
+    .metric {
+      min-height: 116px;
+      padding: 18px;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--navy);
+      font-size: 28px;
+      line-height: 1.1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .day-card {
+      padding: 0;
+      overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .day-card.hidden {
+      display: none;
+    }
+
+    .day-head {
+      padding: 16px 16px 14px;
+      color: #fff;
+      background: var(--navy);
+    }
+
+    .day-card[data-phase="筹备"] .day-head { background: var(--blue); }
+    .day-card[data-phase="预热"] .day-head { background: var(--gold); }
+    .day-card[data-phase="内部发售"] .day-head { background: var(--red); }
+    .day-card[data-phase="外部蓄水"] .day-head { background: var(--green); }
+    .day-card[data-phase="直播发售"] .day-head { background: var(--navy); }
+    .day-card[data-phase="追单收尾"] .day-head { background: #7a5a91; }
+    .day-card[data-phase="复盘沉淀"] .day-head { background: #5c6978; }
+
+    .day-topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .day-head h3 {
+      margin: 12px 0 0;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .day-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .day-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .output {
+      margin-top: auto;
+      padding: 11px 12px;
+      border-radius: 8px;
+      color: var(--navy);
+      background: #eef3f7;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .check-label {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .check-label input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--green);
+    }
+
+    .open-detail {
+      min-height: 36px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--navy);
+      background: #fff;
+      font-weight: 800;
+    }
+
+    .side {
+      position: sticky;
+      top: 94px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .panel {
+      padding: 20px;
+    }
+
+    .panel h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .panel ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .panel li {
+      margin: 8px 0;
+    }
+
+    .node {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .node:last-child {
+      border-bottom: 0;
+    }
+
+    .node time {
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .node strong {
+      display: block;
+      color: var(--ink);
+    }
+
+    .node span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    dialog {
+      width: min(760px, calc(100% - 28px));
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    dialog::backdrop {
+      background: rgba(10, 15, 25, 0.52);
+      backdrop-filter: blur(4px);
+    }
+
+    .detail-panel {
+      border: 0;
+      box-shadow: none;
+      overflow: hidden;
+    }
+
+    .detail-head {
+      padding: 22px;
+      color: #fff;
+      background: var(--navy);
+    }
+
+    .detail-head small {
+      color: rgba(255, 255, 255, 0.78);
+      font-weight: 800;
+    }
+
+    .detail-head h2 {
+      margin: 8px 0 0;
+      font-size: 30px;
+      line-height: 1.18;
+    }
+
+    .detail-content {
+      padding: 22px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .detail-block h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: var(--navy);
+    }
+
+    .detail-block p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .detail-block ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 0 22px 22px;
+    }
+
+    .primary,
+    .secondary {
+      min-height: 40px;
+      padding: 8px 13px;
+      border-radius: 8px;
+      font-weight: 900;
+    }
+
+    .primary {
+      border: 1px solid var(--green);
+      color: #fff;
+      background: var(--green);
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+      color: var(--navy);
+      background: #fff;
+    }
+
+    .empty {
+      display: none;
+      margin: 16px 0 0;
+      padding: 28px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .empty.visible {
+      display: block;
+    }
+
+    @media (max-width: 1060px) {
+      .hero-inner,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .score-card,
+      .side {
+        position: static;
+      }
+
+      .timeline-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero-inner,
+      .toolbar-inner,
+      main {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .hero-inner {
+        padding: 30px 0 28px;
+      }
+
+      .brand-row {
+        margin-bottom: 28px;
+      }
+
+      h1 {
+        font-size: 39px;
+      }
+
+      .toolbar-inner {
+        grid-template-columns: 1fr;
+        padding: 10px 0;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+      .summary-grid,
+      .timeline-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .progress-ring {
+        grid-template-columns: 92px 1fr;
+      }
+
+      .ring {
+        width: 92px;
+        height: 92px;
+      }
+
+      .ring span {
+        width: 66px;
+        height: 66px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="brand-row"><span class="mark">国</span><span>国然教育 · 2026 暑期夏令营</span></div>
+          <div class="eyebrow">30 天陪跑执行路线图</div>
+          <h1>从发售筹备到复盘沉淀的陪跑看板</h1>
+          <p>围绕北京营与湖南营的双营发售目标，把 30 天拆成每日任务、验收产出、关键节点和交付资产，适合陪跑会议、团队协同和客户汇报。</p>
+        </div>
+        <aside class="score-card" aria-label="完成进度">
+          <h2>陪跑进度</h2>
+          <div class="progress-ring">
+            <div class="ring" id="ring" style="--progress: 0deg"><span id="percent">0%</span></div>
+            <div class="score-meta">
+              <strong id="doneCount">0/30</strong>
+              <small>勾选每天任务后自动记录在当前浏览器</small>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <div class="toolbar-inner">
+        <div class="filters" id="filters" aria-label="阶段筛选">
+          <button class="chip active" data-filter="全部">全部</button>
+          <button class="chip" data-filter="筹备">筹备</button>
+          <button class="chip" data-filter="预热">预热</button>
+          <button class="chip" data-filter="内部发售">内部发售</button>
+          <button class="chip" data-filter="外部蓄水">外部蓄水</button>
+          <button class="chip" data-filter="直播发售">直播发售</button>
+          <button class="chip" data-filter="追单收尾">追单收尾</button>
+          <button class="chip" data-filter="复盘沉淀">复盘沉淀</button>
+        </div>
+        <input class="search" id="search" type="search" placeholder="搜索日期、任务、产出">
+      </div>
+    </div>
+
+    <main>
+      <section class="summary-grid" aria-label="核心目标">
+        <div class="metric"><strong>53.8万+</strong><span>双营总营收目标</span></div>
+        <div class="metric"><strong>60人</strong><span>北京营 + 湖南营满招目标</span></div>
+        <div class="metric"><strong>300-500人</strong><span>外部公开课报名目标</span></div>
+        <div class="metric"><strong>12项</strong><span>最终交付资产沉淀</span></div>
+      </section>
+
+      <section class="layout">
+        <div>
+          <div class="timeline-grid" id="timeline"></div>
+          <div class="empty" id="empty">没有匹配的执行任务，换个关键词试试。</div>
+        </div>
+
+        <aside class="side" aria-label="陪跑侧栏">
+          <section class="panel">
+            <h2>关键验收节点</h2>
+            <div class="node"><time>6.3</time><div><strong>物料验收</strong><span>海报、文案、详情页、支付链接、社群 SOP 完成</span></div></div>
+            <div class="node"><time>6.10</time><div><strong>内部发售验收</strong><span>完成老学员发售会，形成首批成交战报</span></div></div>
+            <div class="node"><time>6.15</time><div><strong>外部蓄水验收</strong><span>公开课报名 300-500 人，社群沉淀 200-300 人</span></div></div>
+            <div class="node"><time>6.18</time><div><strong>直播成交验收</strong><span>完成三天公开课发售，形成外部成交战报</span></div></div>
+            <div class="node"><time>6.25</time><div><strong>复盘交付验收</strong><span>复盘报告、SOP、素材库、优化建议归档</span></div></div>
+          </section>
+
+          <section class="panel">
+            <h2>每日陪跑机制</h2>
+            <ul>
+              <li>早会 15 分钟：确认今日目标、负责人、关键动作。</li>
+              <li>晚间复盘 20 分钟：复盘内容、私信、报名、成交和卡点。</li>
+              <li>每日更新数据：触达数、邀约数、报名数、成交数、待跟进名单。</li>
+            </ul>
+          </section>
+
+          <section class="panel">
+            <h2>最终交付物</h2>
+            <ul>
+              <li>发售总控表、双营卖点表、目标家长画像表。</li>
+              <li>朋友圈文案库、短视频脚本库、1v1 私信话术。</li>
+              <li>内部发售会流程、三天公开课大纲、异议处理话术。</li>
+              <li>追单分层表、发售复盘报告、下一轮优化建议。</li>
+            </ul>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="detailDialog" aria-label="任务详情">
+    <article class="detail-panel">
+      <div class="detail-head" id="detailHead">
+        <small id="detailMeta"></small>
+        <h2 id="detailTitle"></h2>
+      </div>
+      <div class="detail-content">
+        <div class="detail-block">
+          <h3>核心任务</h3>
+          <p id="detailTask"></p>
+        </div>
+        <div class="detail-block">
+          <h3>当日产出</h3>
+          <p id="detailOutput"></p>
+        </div>
+        <div class="detail-block">
+          <h3>陪跑提醒</h3>
+          <ul id="detailTips"></ul>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="secondary" id="closeDialog">关闭</button>
+        <button class="primary" id="toggleDone">标记完成</button>
+      </div>
+    </article>
+  </dialog>
+
+  <script>
+    const days = [
+      { day: 1, date: "5.27", phase: "筹备", title: "项目启动会", task: "确认项目目标、价格策略、负责人、协作节奏和完整时间线。", output: "发售总控表", tips: ["把北京营、湖南营拆成独立目标。", "明确每天谁交付、谁验收。", "建立一个统一数据表。"] },
+      { day: 2, date: "5.28", phase: "筹备", title: "卖点与画像梳理", task: "梳理北京营、湖南营核心卖点，明确目标家长画像和核心痛点。", output: "产品卖点表", tips: ["北京营主打荣耀感与国家仪式。", "湖南营主打立志、品格、领袖感。", "把家长焦虑转成可沟通话术。"] },
+      { day: 3, date: "5.29", phase: "筹备", title: "价格福利确认", task: "确认早鸟价、团报价、联报价、赠品和限时机制。", output: "价格福利方案", tips: ["福利要能支撑直播间限时成交。", "联报方案承担高客单转化。", "提前写好价格解释逻辑。"] },
+      { day: 4, date: "5.30", phase: "筹备", title: "核心物料首轮完成", task: "完成主视觉、详情长图、发售信和客户见证素材整理。", output: "第一批核心物料", tips: ["主视觉需要统一三天公开课主题。", "见证素材优先使用家长反馈。", "详情页要能独立完成转化说明。"] },
+      { day: 5, date: "5.31", phase: "筹备", title: "报名支付链路搭建", task: "搭建星橙知道课程页、报名表、支付链接、优惠券和提醒设置。", output: "报名支付链路", tips: ["至少完成一次真实下单测试。", "报名表字段控制在必要信息。", "准备支付异常处理话术。"] },
+      { day: 6, date: "6.1", phase: "筹备", title: "内容素材库生成", task: "生成朋友圈文案库、短视频脚本、私信邀约话术和群内预热话术。", output: "内容素材库", tips: ["朋友圈至少覆盖 6.4-6.18。", "短视频脚本按痛点、故事、见证分类。", "私信话术分老学员和新用户。"] },
+      { day: 7, date: "6.2", phase: "筹备", title: "预热物料收口", task: "完成倒计时海报、内部发售会邀请函、社群 SOP 和群公告。", output: "预热启动物料", tips: ["倒计时内容要连接 6.10 内部发售。", "邀请函突出专属感。", "社群 SOP 写清楚每日群动作。"] },
+      { day: 8, date: "6.3", phase: "筹备", title: "全物料验收和彩排", task: "检查全部物料、支付链路、直播流程，彩排内部发售会。", output: "发售检查清单", tips: ["逐项检查海报、文案、支付、群流程。", "确认直播分工和时间控制。", "6.4 前不再临时大改主线。"] },
+      { day: 9, date: "6.4", phase: "预热", title: "预热首日启动", task: "发布教育痛点和王校故事型朋友圈，发布第 1 条短视频，启动老学员预沟通。", output: "预热首日数据", tips: ["记录朋友圈互动名单。", "筛出第一批高意向家长。", "当天复盘标题和钩子效果。"] },
+      { day: 10, date: "6.5", phase: "预热", title: "见证素材种草", task: "发布往期学员或家长见证，继续 1v1 沟通。", output: "高意向名单", tips: ["见证内容要具体到变化。", "1v1 沟通先问孩子现状。", "把愿意了解的用户标成 A 类。"] },
+      { day: 11, date: "6.6", phase: "预热", title: "双营亮点推进", task: "发布北京营、湖南营产品亮点内容，推进发售会邀约。", output: "发售会邀约名单", tips: ["按孩子状态推荐对应营地。", "邀约时强调专属说明会。", "记录已确认到场和待确认。"] },
+      { day: 12, date: "6.7", phase: "预热", title: "倒计时 D-3", task: "发布见证型内容和倒计时海报，重点邀约内部发售会。", output: "到场确认表", tips: ["用倒计时制造行动理由。", "电话或语音确认高意向用户。", "统计预计到场率。"] },
+      { day: 13, date: "6.8", phase: "预热", title: "倒计时 D-2", task: "发布王校金句和第 3 条短视频，发送专属邀请函。", output: "最终邀约名单", tips: ["邀请函单独私发，不只群发。", "补充发售会核心看点。", "把未回复用户安排二次触达。"] },
+      { day: 14, date: "6.9", phase: "预热", title: "倒计时 D-1", task: "发布紧迫感内容，完成最后一轮电话或私信确认。", output: "发售会到场预估", tips: ["提醒具体时间和入口。", "准备直播开场互动。", "确认助教盯群和私信分工。"] },
+      { day: 15, date: "6.10", phase: "内部发售", title: "老学员线上发售会", task: "举办内部发售会，完成价值讲解、报价、福利、答疑和当天锁单。", output: "内部成交战报", tips: ["现场播报报名进度。", "成交后立即收集反馈截图。", "当晚形成朋友圈战报素材。"] },
+      { day: 16, date: "6.11", phase: "外部蓄水", title: "公开课报名启动", task: "发布内部发售战报，开启公开课报名和外部蓄水。", output: "公开课报名页", tips: ["战报要具体但不过度炫耀。", "公开课报名路径必须简单。", "同步群发直播课预告。"] },
+      { day: 17, date: "6.12", phase: "外部蓄水", title: "专属群沉淀", task: "建立直播课专属群，发布已报名家长感言和入群欢迎内容。", output: "社群用户沉淀", tips: ["群公告说明三天安排。", "设置群内互动问题。", "收集新用户来源。"] },
+      { day: 18, date: "6.13", phase: "外部蓄水", title: "王校故事预热", task: "发布王校故事型短视频，群内做福利和课程倒计时预告。", output: "群内互动数据", tips: ["强化王校 IP 信任。", "群内不要只通知，要提问互动。", "标记主动提问用户。"] },
+      { day: 19, date: "6.14", phase: "外部蓄水", title: "倒计时 D-2", task: "发布痛点型内容，1v1 邀约未进群用户和未报名用户。", output: "直播到场名单", tips: ["痛点表达要指向解决方案。", "重点跟进看过内容但未报名的人。", "统计预计直播到场数。"] },
+      { day: 20, date: "6.15", phase: "外部蓄水", title: "直播前总彩排", task: "发布倒计时 D-1 和学员蜕变内容，完成直播彩排和群提醒。", output: "直播课最终准备", tips: ["确认 PPT、链接、助教、支付。", "群内提醒明晚准时开课。", "整理 Day1 互动问题。"] },
+      { day: 21, date: "6.16", phase: "直播发售", title: "Day1 痛点唤醒", task: "完成第一场直播：孩子正在失去什么，建立危机感和解决方向。", output: "Day1 数据复盘", tips: ["重点讲无信仰、无目标、无韧性。", "结尾预告 Day2 方法。", "直播后立刻私聊高互动用户。"] },
+      { day: 22, date: "6.17", phase: "直播发售", title: "Day2 方案呈现", task: "完成第二场直播：7 天改变孩子底层密码，讲清教育理念、双营设计和见证。", output: "高意向跟进名单", tips: ["不要急着卖，先建立方案信任。", "把北京营和湖南营讲出差异。", "结尾预告 Day3 福利和名额。"] },
+      { day: 23, date: "6.18", phase: "直播发售", title: "Day3 限时成交", task: "完成第三场直播：报价、福利、异议处理、名额播报和限时锁单。", output: "外部成交战报", tips: ["异议提前集中处理。", "直播间专属价和赠品要讲清截止时间。", "成交数据当晚整理成战报。"] },
+      { day: 24, date: "6.19", phase: "追单收尾", title: "追单分层启动", task: "跟进未付款、高意向、犹豫用户，按意向等级分层。", output: "追单分层表", tips: ["A 类用户当天必须触达。", "按价格、安全、效果、孩子意愿分类异议。", "不要用同一套话术追所有人。"] },
+      { day: 25, date: "6.20", phase: "追单收尾", title: "集中异议处理", task: "针对安全、效果、价格、孩子不愿意等问题进行 1v1 处理。", output: "异议处理记录", tips: ["每个异议都沉淀成标准话术。", "适当补发见证和王校理念内容。", "记录无法成交原因。"] },
+      { day: 26, date: "6.21", phase: "追单收尾", title: "名额进度推动", task: "发布名额进度、成交见证和截止提醒，推动二次成交。", output: "二次成交素材", tips: ["名额进度要真实可信。", "用家长反馈增强临门一脚。", "提醒优惠截止，不制造虚假稀缺。"] },
+      { day: 27, date: "6.22", phase: "追单收尾", title: "优惠截止收尾", task: "完成最后一轮限时截止跟进，关闭优惠，统计最终数据。", output: "最终成交数据", tips: ["明确最后付款时间。", "未成交用户进入后续养护池。", "整理所有报名信息。"] },
+      { day: 28, date: "6.23", phase: "复盘沉淀", title: "项目数据复盘", task: "复盘内容、私域、直播、成交数据，找出有效动作和失效环节。", output: "发售复盘报告", tips: ["看转化率，不只看成交额。", "把高转化内容单独归档。", "列出下一轮必须优化的问题。"] },
+      { day: 29, date: "6.24", phase: "复盘沉淀", title: "营前服务启动", task: "整理报名学员信息，启动营前服务和家长沟通。", output: "学员服务清单", tips: ["报名后体验会影响转介绍。", "家长信息要分营地整理。", "提前规划营前通知节奏。"] },
+      { day: 30, date: "6.25", phase: "复盘沉淀", title: "资产包沉淀", task: "沉淀 SOP、话术、物料、案例和下次发售优化建议。", output: "项目资产包", tips: ["把本次执行变成下次模板。", "按物料、话术、数据、案例分类归档。", "形成可复制的夏令营发售模型。"] }
+    ];
+
+    const phaseColor = {
+      "筹备": "#3275a8",
+      "预热": "#c88b2f",
+      "内部发售": "#b75347",
+      "外部蓄水": "#2f8069",
+      "直播发售": "#203a5f",
+      "追单收尾": "#7a5a91",
+      "复盘沉淀": "#5c6978"
+    };
+
+    const timeline = document.getElementById("timeline");
+    const filters = document.getElementById("filters");
+    const search = document.getElementById("search");
+    const empty = document.getElementById("empty");
+    const percent = document.getElementById("percent");
+    const doneCount = document.getElementById("doneCount");
+    const ring = document.getElementById("ring");
+    const dialog = document.getElementById("detailDialog");
+    const detailHead = document.getElementById("detailHead");
+    const detailMeta = document.getElementById("detailMeta");
+    const detailTitle = document.getElementById("detailTitle");
+    const detailTask = document.getElementById("detailTask");
+    const detailOutput = document.getElementById("detailOutput");
+    const detailTips = document.getElementById("detailTips");
+    const closeDialog = document.getElementById("closeDialog");
+    const toggleDone = document.getElementById("toggleDone");
+
+    let activeFilter = "全部";
+    let activeDay = null;
+    const storageKey = "guoran-roadmap-done-v1";
+    const done = new Set(JSON.parse(localStorage.getItem(storageKey) || "[]"));
+
+    function saveDone() {
+      localStorage.setItem(storageKey, JSON.stringify([...done]));
+    }
+
+    function renderCards() {
+      timeline.innerHTML = days.map(item => {
+        const checked = done.has(item.day) ? "checked" : "";
+        return `
+          <article class="day-card" data-day="${item.day}" data-phase="${item.phase}" data-search="${[item.date, item.phase, item.title, item.task, item.output].join(" ")}">
+            <div class="day-head">
+              <div class="day-topline"><span>Day ${item.day}</span><span>${item.date} · ${item.phase}</span></div>
+              <h3>${item.title}</h3>
+            </div>
+            <div class="day-body">
+              <p>${item.task}</p>
+              <div class="output">${item.output}</div>
+              <div class="card-actions">
+                <label class="check-label">
+                  <input type="checkbox" data-check="${item.day}" ${checked}>
+                  <span>完成</span>
+                </label>
+                <button class="open-detail" data-open="${item.day}">详情</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+      applyFilters();
+      updateProgress();
+    }
+
+    function applyFilters() {
+      const keyword = search.value.trim().toLowerCase();
+      let visible = 0;
+      document.querySelectorAll(".day-card").forEach(card => {
+        const phaseMatch = activeFilter === "全部" || card.dataset.phase === activeFilter;
+        const textMatch = !keyword || card.dataset.search.toLowerCase().includes(keyword);
+        const show = phaseMatch && textMatch;
+        card.classList.toggle("hidden", !show);
+        if (show) visible += 1;
+      });
+      empty.classList.toggle("visible", visible === 0);
+    }
+
+    function updateProgress() {
+      const total = days.length;
+      const count = done.size;
+      const value = Math.round((count / total) * 100);
+      percent.textContent = `${value}%`;
+      doneCount.textContent = `${count}/${total}`;
+      ring.style.setProperty("--progress", `${(value / 100) * 360}deg`);
+    }
+
+    function openDetail(dayNumber) {
+      const item = days.find(day => day.day === dayNumber);
+      if (!item) return;
+      activeDay = item;
+      detailHead.style.background = phaseColor[item.phase] || "#203a5f";
+      detailMeta.textContent = `Day ${item.day} · ${item.date} · ${item.phase}`;
+      detailTitle.textContent = item.title;
+      detailTask.textContent = item.task;
+      detailOutput.textContent = item.output;
+      detailTips.innerHTML = item.tips.map(tip => `<li>${tip}</li>`).join("");
+      toggleDone.textContent = done.has(item.day) ? "取消完成" : "标记完成";
+      dialog.showModal();
+    }
+
+    filters.addEventListener("click", event => {
+      const button = event.target.closest("[data-filter]");
+      if (!button) return;
+      activeFilter = button.dataset.filter;
+      document.querySelectorAll(".chip").forEach(chip => chip.classList.toggle("active", chip === button));
+      applyFilters();
+    });
+
+    search.addEventListener("input", applyFilters);
+
+    timeline.addEventListener("change", event => {
+      const checkbox = event.target.closest("[data-check]");
+      if (!checkbox) return;
+      const dayNumber = Number(checkbox.dataset.check);
+      if (checkbox.checked) {
+        done.add(dayNumber);
+      } else {
+        done.delete(dayNumber);
+      }
+      saveDone();
+      updateProgress();
+    });
+
+    timeline.addEventListener("click", event => {
+      const button = event.target.closest("[data-open]");
+      if (!button) return;
+      openDetail(Number(button.dataset.open));
+    });
+
+    closeDialog.addEventListener("click", () => dialog.close());
+
+    toggleDone.addEventListener("click", () => {
+      if (!activeDay) return;
+      if (done.has(activeDay.day)) {
+        done.delete(activeDay.day);
+      } else {
+        done.add(activeDay.day);
+      }
+      saveDone();
+      const checkbox = document.querySelector(`[data-check="${activeDay.day}"]`);
+      if (checkbox) checkbox.checked = done.has(activeDay.day);
+      updateProgress();
+      toggleDone.textContent = done.has(activeDay.day) ? "取消完成" : "标记完成";
+    });
+
+    renderCards();
+  </script>
+</body>
+</html>
