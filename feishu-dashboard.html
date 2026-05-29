@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>飞书动态陪跑驾驶舱</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #657085;
+      --paper: #fbfaf6;
+      --white: #ffffff;
+      --line: #dfe4ec;
+      --navy: #203a5f;
+      --blue: #3275a8;
+      --gold: #c88b2f;
+      --green: #2f8069;
+      --red: #b75347;
+      --shadow: 0 16px 45px rgba(23, 32, 51, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.6;
+    }
+
+    .hero {
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(18, 31, 50, 0.94), rgba(32, 58, 95, 0.72), rgba(32, 58, 95, 0.2)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=82") center/cover;
+    }
+
+    .hero-inner,
+    main {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero-inner {
+      padding: 52px 0 42px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 36px;
+      align-items: end;
+    }
+
+    .brand {
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 54px;
+      color: rgba(255, 255, 255, 0.86);
+      font-weight: 900;
+    }
+
+    .mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--gold), var(--green));
+    }
+
+    .eyebrow {
+      color: #f3d79f;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.05;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 20px 0 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 18px;
+    }
+
+    .status-card,
+    .metric,
+    .panel,
+    .record {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 10px 28px rgba(23, 32, 51, 0.06);
+    }
+
+    .status-card {
+      padding: 22px;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .status-card strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .status-card span {
+      display: block;
+      margin-top: 10px;
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    main {
+      padding: 34px 0 76px;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .search {
+      min-height: 42px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      outline: none;
+      font: inherit;
+    }
+
+    .refresh {
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 1px solid var(--navy);
+      border-radius: 8px;
+      color: #fff;
+      background: var(--navy);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .metric {
+      min-height: 108px;
+      padding: 18px;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--navy);
+      font-size: 30px;
+      line-height: 1.1;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .records {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .record {
+      padding: 18px;
+      min-height: 220px;
+    }
+
+    .record h2 {
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.2;
+    }
+
+    .badge {
+      display: inline-flex;
+      margin-bottom: 12px;
+      min-height: 28px;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .field {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .field small {
+      display: block;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .field div {
+      margin-top: 4px;
+      color: var(--ink);
+    }
+
+    .panel {
+      padding: 20px;
+      position: sticky;
+      top: 18px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .panel ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .panel li {
+      margin: 8px 0;
+    }
+
+    .empty,
+    .error {
+      padding: 28px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px dashed var(--line);
+      color: var(--muted);
+    }
+
+    .error {
+      border-color: rgba(183, 83, 71, 0.45);
+      color: var(--red);
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner,
+      .layout,
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+      .metrics,
+      .records {
+        grid-template-columns: 1fr;
+      }
+      .panel { position: static; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-inner,
+      main {
+        width: min(100% - 28px, 1180px);
+      }
+      h1 { font-size: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="brand"><span class="mark">飞</span><span>飞书动态交付系统</span></div>
+        <div class="eyebrow">Feishu Bitable Powered Dashboard</div>
+        <h1>私教陪跑客户驾驶舱</h1>
+        <p>这个页面会从飞书多维表格实时读取客户进度、任务、交付物和老师点评。你更新飞书，客户刷新网页即可看到最新状态。</p>
+      </div>
+      <aside class="status-card">
+        <strong id="recordCount">--</strong>
+        <span id="updatedAt">等待连接飞书数据</span>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <div class="toolbar">
+      <input class="search" id="search" type="search" placeholder="搜索客户、模块、任务、交付物">
+      <button class="refresh" id="refresh">刷新飞书数据</button>
+    </div>
+
+    <section class="metrics" aria-label="数据概览">
+      <div class="metric"><strong id="clientMetric">--</strong><span>客户/项目数</span></div>
+      <div class="metric"><strong id="moduleMetric">--</strong><span>涉及模块数</span></div>
+      <div class="metric"><strong id="doneMetric">--</strong><span>已完成记录</span></div>
+      <div class="metric"><strong id="todoMetric">--</strong><span>推进中记录</span></div>
+    </section>
+
+    <section class="layout">
+      <div id="records" class="records"></div>
+      <aside class="panel">
+        <h2>建议飞书字段</h2>
+        <ul>
+          <li>客户名称</li>
+          <li>模块</li>
+          <li>当前阶段</li>
+          <li>本周任务</li>
+          <li>完成状态</li>
+          <li>交付物链接</li>
+          <li>老师点评</li>
+          <li>下次会议</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const recordsEl = document.getElementById("records");
+    const searchEl = document.getElementById("search");
+    const refreshEl = document.getElementById("refresh");
+    let allRecords = [];
+
+    const aliases = {
+      client: ["客户名称", "客户", "项目", "项目名称", "公司"],
+      module: ["模块", "陪跑模块", "系统"],
+      stage: ["当前阶段", "阶段", "状态阶段"],
+      task: ["本周任务", "任务", "今日任务", "行动清单"],
+      status: ["完成状态", "状态", "进度"],
+      deliverable: ["交付物链接", "交付物", "链接", "文件"],
+      comment: ["老师点评", "顾问点评", "点评", "复盘"],
+      meeting: ["下次会议", "会议时间", "下次行动"]
+    };
+
+    function pick(fields, key) {
+      for (const name of aliases[key]) {
+        if (fields[name]) return fields[name];
+      }
+      return "";
+    }
+
+    function isDone(status) {
+      return /完成|已交付|done|finished/i.test(status || "");
+    }
+
+    function uniqueCount(values) {
+      return new Set(values.filter(Boolean)).size;
+    }
+
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char]));
+    }
+
+    function render(records) {
+      document.getElementById("recordCount").textContent = records.length;
+      document.getElementById("clientMetric").textContent = uniqueCount(records.map(r => pick(r.fields, "client")));
+      document.getElementById("moduleMetric").textContent = uniqueCount(records.map(r => pick(r.fields, "module")));
+      document.getElementById("doneMetric").textContent = records.filter(r => isDone(pick(r.fields, "status"))).length;
+      document.getElementById("todoMetric").textContent = records.filter(r => !isDone(pick(r.fields, "status"))).length;
+
+      if (!records.length) {
+        recordsEl.innerHTML = '<div class="empty">暂无匹配记录。请检查飞书表格是否有数据，或换个关键词。</div>';
+        return;
+      }
+
+      recordsEl.innerHTML = records.map(record => {
+        const fields = record.fields;
+        const client = pick(fields, "client") || "未命名客户";
+        const module = pick(fields, "module") || "未填写模块";
+        const stage = pick(fields, "stage") || "未填写阶段";
+        const status = pick(fields, "status") || "未填写状态";
+        const task = pick(fields, "task") || "未填写任务";
+        const deliverable = pick(fields, "deliverable") || "未填写交付物";
+        const comment = pick(fields, "comment") || "未填写点评";
+        const meeting = pick(fields, "meeting") || "未填写会议时间";
+        return `
+          <article class="record">
+            <span class="badge">${escapeHtml(status)}</span>
+            <h2>${escapeHtml(client)}</h2>
+            <div class="field"><small>模块 / 阶段</small><div>${escapeHtml(module)} · ${escapeHtml(stage)}</div></div>
+            <div class="field"><small>本周任务</small><div>${escapeHtml(task)}</div></div>
+            <div class="field"><small>交付物</small><div>${escapeHtml(deliverable)}</div></div>
+            <div class="field"><small>老师点评</small><div>${escapeHtml(comment)}</div></div>
+            <div class="field"><small>下次会议</small><div>${escapeHtml(meeting)}</div></div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function applySearch() {
+      const keyword = searchEl.value.trim().toLowerCase();
+      if (!keyword) {
+        render(allRecords);
+        return;
+      }
+      render(allRecords.filter(record => JSON.stringify(record.fields).toLowerCase().includes(keyword)));
+    }
+
+    async function loadData() {
+      refreshEl.disabled = true;
+      refreshEl.textContent = "读取中";
+      recordsEl.innerHTML = '<div class="empty">正在读取飞书多维表格数据...</div>';
+      try {
+        const response = await fetch("/.netlify/functions/feishu-records");
+        const data = await response.json();
+        if (!data.ok) throw new Error(data.message || "读取失败");
+        allRecords = data.records || [];
+        document.getElementById("updatedAt").textContent = `最后同步：${new Date(data.updatedAt).toLocaleString("zh-CN")}`;
+        applySearch();
+      } catch (error) {
+        recordsEl.innerHTML = `<div class="error">飞书数据暂未连接成功：${escapeHtml(error.message)}。请先完成 Netlify 环境变量和飞书应用授权配置。</div>`;
+      } finally {
+        refreshEl.disabled = false;
+        refreshEl.textContent = "刷新飞书数据";
+      }
+    }
+
+    searchEl.addEventListener("input", applySearch);
+    refreshEl.addEventListener("click", loadData);
+    loadData();
+  </script>
+</body>
+</html>
