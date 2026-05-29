@@ -104,6 +104,34 @@ function normalizeRecord(record) {
   };
 }
 
+function pick(fields, keys, fallback = "") {
+  for (const key of keys) {
+    if (fields[key]) return fields[key];
+  }
+  return fallback;
+}
+
+function normalizeStudent(record) {
+  const fields = record.fields || {};
+  const progressText = pick(fields, ["进度百分比", "进度", "完成进度"], "0").replace("%", "");
+  const progress = Math.max(0, Math.min(100, Number.parseInt(progressText, 10) || 0));
+  return {
+    id: record.id,
+    name: pick(fields, ["学员姓名", "客户名称", "姓名", "学员"], "未命名学员"),
+    type: pick(fields, ["客户类型", "类型"], "私教学员 · 年度陪跑"),
+    stage: pick(fields, ["当前阶段", "阶段"], "待同步"),
+    progress,
+    nextAction: pick(fields, ["下一动作", "下一步动作", "本周任务"], "待安排"),
+    nextMeeting: pick(fields, ["下次会议时间", "下次会议"], ""),
+    status: pick(fields, ["状态", "完成状态"], "coaching"),
+    summary: pick(fields, ["摘要", "项目说明", "备注"], ""),
+    deliveryUrl: pick(fields, ["交付页链接", "网页链接"], ""),
+    wikiUrl: pick(fields, ["知识库链接", "飞书知识库链接", "档案链接"], ""),
+    meetingUrl: pick(fields, ["会议纪要链接"], ""),
+    missingModules: pick(fields, ["待补齐模块"], "")
+  };
+}
+
 export async function handler() {
   try {
     const token = await getTenantAccessToken();
@@ -112,7 +140,8 @@ export async function handler() {
       ok: true,
       source: "feishu-bitable",
       updatedAt: new Date().toISOString(),
-      records: records.map(normalizeRecord)
+      records: records.map(normalizeRecord),
+      students: records.map(normalizeRecord).map(normalizeStudent)
     });
   } catch (error) {
     return json(500, {
