@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>章子康老师私教陪跑交付页</title>
+  <style>
+    :root {
+      --ink: #192033;
+      --muted: #667085;
+      --paper: #fbfaf6;
+      --white: #ffffff;
+      --line: #dfe4ec;
+      --navy: #203a5f;
+      --teal: #2f8069;
+      --gold: #c88b2f;
+      --red: #b75347;
+      --purple: #6d5a8f;
+      --shadow: 0 16px 45px rgba(25, 32, 51, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.62;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(223, 228, 236, 0.92);
+      background: rgba(251, 250, 246, 0.94);
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+      font-weight: 900;
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav a:hover { color: var(--navy); }
+
+    .hero {
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(15, 28, 47, 0.94), rgba(32, 58, 95, 0.78), rgba(47, 128, 105, 0.25)),
+        url("https://images.unsplash.com/photo-1499728603263-13726abce5fd?auto=format&fit=crop&w=1800&q=82") center/cover;
+    }
+
+    .hero-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 88vh;
+      padding: 74px 0 52px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 390px;
+      gap: 48px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: #f4d99f;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: #f4d99f;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 24px 0 0;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 18px;
+    }
+
+    .hero-panel {
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+
+    .hero-kpis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .hero-kpis div {
+      min-height: 96px;
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .hero-kpis strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1.12;
+    }
+
+    .hero-kpis span {
+      display: block;
+      margin-top: 7px;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 13px;
+    }
+
+    section {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 70px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.14;
+    }
+
+    .lead {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .tag {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--navy);
+      background: #fff;
+      font-weight: 900;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .metrics,
+    .modules,
+    .products,
+    .timeline,
+    .assets,
+    .gaps {
+      display: grid;
+      gap: 14px;
+    }
+
+    .metrics {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .metric,
+    .card,
+    .module,
+    .product,
+    .phase,
+    .asset,
+    .gap,
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 10px 28px rgba(25, 32, 51, 0.06);
+    }
+
+    .metric {
+      min-height: 132px;
+      padding: 18px;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--navy);
+      font-size: 29px;
+      line-height: 1.12;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .card h3,
+    .module h3,
+    .product h3,
+    .phase h3,
+    .asset h3,
+    .gap h3 {
+      margin: 0 0 10px;
+      font-size: 23px;
+      line-height: 1.2;
+    }
+
+    .card p,
+    .module p,
+    .product p,
+    .phase p,
+    .asset p,
+    .gap p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .modules {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .module {
+      padding: 22px;
+      min-height: 230px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module::before {
+      content: "";
+      display: block;
+      width: 54px;
+      height: 4px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      background: var(--teal);
+    }
+
+    .module.pending::before { background: var(--gold); }
+
+    .module small {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .products {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .product {
+      overflow: hidden;
+    }
+
+    .product .band {
+      min-height: 104px;
+      padding: 20px;
+      color: #fff;
+      background: var(--navy);
+    }
+
+    .product:nth-child(2) .band { background: var(--teal); }
+    .product:nth-child(3) .band { background: var(--purple); }
+    .product:nth-child(4) .band { background: var(--red); }
+
+    .product .body {
+      padding: 18px;
+    }
+
+    .price {
+      display: inline-flex;
+      margin-top: 9px;
+      min-height: 30px;
+      align-items: center;
+      padding: 4px 9px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.16);
+      font-weight: 900;
+    }
+
+    .timeline {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .phase {
+      padding: 22px;
+      min-height: 220px;
+    }
+
+    .phase time {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      padding: 4px 9px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--navy);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .phase h3 {
+      margin-top: 18px;
+    }
+
+    .assets {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .asset {
+      padding: 22px;
+      min-height: 190px;
+    }
+
+    .asset a {
+      display: inline-flex;
+      margin-top: 14px;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .gaps {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gap {
+      padding: 22px;
+      min-height: 210px;
+      border-color: rgba(200, 139, 47, 0.42);
+      background: #fffaf0;
+    }
+
+    .closing {
+      width: 100%;
+      padding: 76px 0;
+      color: #fff;
+      background: #192033;
+    }
+
+    .closing-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .closing h2 { color: #fff; }
+    .closing p { color: rgba(255, 255, 255, 0.76); }
+
+    .panel {
+      padding: 24px;
+      color: rgba(255, 255, 255, 0.84);
+      border-color: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: none;
+    }
+
+    .panel ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .panel li {
+      margin: 8px 0;
+    }
+
+    @media (max-width: 1060px) {
+      nav { display: none; }
+      .hero-inner,
+      .section-head,
+      .grid-2,
+      .closing-inner {
+        grid-template-columns: 1fr;
+      }
+      .metrics,
+      .modules,
+      .products,
+      .timeline,
+      .assets,
+      .gaps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .topbar-inner,
+      .hero-inner,
+      section,
+      .closing-inner {
+        width: min(100% - 28px, 1180px);
+      }
+      .hero-inner {
+        min-height: auto;
+        padding: 56px 0 44px;
+      }
+      h1 { font-size: 41px; }
+      .hero-kpis,
+      .metrics,
+      .modules,
+      .products,
+      .timeline,
+      .assets,
+      .gaps {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top"><span class="mark">章</span><span>章子康私教交付页</span></a>
+      <nav aria-label="页面导航">
+        <a href="#position">定位</a>
+        <a href="#modules">模块</a>
+        <a href="#products">产品</a>
+        <a href="#roadmap">年度路径</a>
+        <a href="#assets">资产</a>
+        <a href="#gaps">待补齐</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">2026.5.9 - 2027.5.8 私教陪跑</div>
+          <h1>章氏催眠疗愈私教陪跑交付驾驶舱</h1>
+          <p>基于飞书知识库资料整理：围绕章子康老师的知识 IP、催眠疗愈技术体系、合伙人产品、年度发售与内容获客，形成一套可持续推进的年度交付页面。</p>
+        </div>
+        <aside class="hero-panel">
+          <h2>年度关键目标</h2>
+          <div class="hero-kpis">
+            <div><strong>1000万</strong><span>年度营收目标</span></div>
+            <div><strong>10位</strong><span>累计弟子目标</span></div>
+            <div><strong>100名</strong><span>累计学员目标</span></div>
+            <div><strong>100万</strong><span>首轮合伙人发售目标</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="position">
+      <div class="section-head">
+        <div>
+          <h2>核心定位：失眠疗愈专家 + 催眠疗愈师创业孵化平台</h2>
+          <p class="lead">知识库资料显示，章子康老师当前最适合聚焦“失眠”作为主攻入口，以章氏催眠疗愈技术建立结果信任，再向疗愈师合伙人和弟子体系延展。</p>
+        </div>
+        <div class="tag">主攻方向：失眠 / 厌学 / 亲密关系</div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric"><strong>600+</strong><span>过往个案基础，基本无退费</span></div>
+        <div class="metric"><strong>1-3次</strong><span>主张高效解决身心问题</span></div>
+        <div class="metric"><strong>3亿</strong><span>失眠人群市场机会</span></div>
+        <div class="metric"><strong>5.29-7.5</strong><span>合伙人体系首轮发售周期</span></div>
+      </div>
+
+      <div class="grid-2" style="margin-top:18px">
+        <article class="card">
+          <h3>优势判断</h3>
+          <p>技术强且已有市场验证，拥有 3.9 万、6 万、10 万、30 万等高客单成交经验；两次完整发售经历说明产品具备成交基础，当前最重要的是聚焦定位、稳定执行和团队化交付。</p>
+        </article>
+        <article class="card">
+          <h3>风险提醒</h3>
+          <p>疗愈/催眠领域需要规避医疗宣传红线，表达上建议使用“睡眠改善、身心调适、疗愈支持、个案陪伴”等语言，避免绝对化疗效承诺。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="modules">
+      <div class="section-head">
+        <div>
+          <h2>年度陪跑六大模块</h2>
+          <p class="lead">根据现有知识库结构，定位策划、产品体系、销转体系已经有核心资料；短视频、直播、AI 提效仍需要补充可执行资产。</p>
+        </div>
+        <div class="tag">当前资料完整度：中高</div>
+      </div>
+
+      <div class="modules">
+        <article class="module">
+          <small>已形成核心资料</small>
+          <h3>定位策划</h3>
+          <p>包含 IP 背景资料、对标参考、知识 IP 策划案、5 年商业计划与 2026-2027 年度计划。</p>
+        </article>
+        <article class="module">
+          <small>已形成产品框架</small>
+          <h3>产品体系</h3>
+          <p>已有 1V1 咨询、目标必达总裁班、生命疗愈师、疗愈私教、生命绽放工作坊、渠道合伙人体系等产品结构。</p>
+        </article>
+        <article class="module">
+          <small>已有发售策划案</small>
+          <h3>销转体系</h3>
+          <p>已形成合伙人体系发售策划案，明确 5.29-7.5 发售周期和 100 万总成交目标。</p>
+        </article>
+        <article class="module pending">
+          <small>待补齐执行内容</small>
+          <h3>短视频获客</h3>
+          <p>栏目已建立，但目前可见资料较少，建议补齐 100 条选题、10 个栏目、30 条口播脚本和引流承接话术。</p>
+        </article>
+        <article class="module pending">
+          <small>待补齐执行内容</small>
+          <h3>直播获客</h3>
+          <p>栏目已建立，建议补齐直播主题库、直播流程台本、助教控场 SOP、直播后追单表。</p>
+        </article>
+        <article class="module pending">
+          <small>待补齐自动化流程</small>
+          <h3>AI 提效</h3>
+          <p>建议建立 AI 助教工作流：内容生成、私域跟进、会议纪要、客户分层、数据复盘和交付物自动生成。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="section-head">
+        <div>
+          <h2>产品阶梯：从入门体验到事业合伙</h2>
+          <p class="lead">知识库中“渠道品合伙人体系（修订版）”已经形成 4 级晋升路径，可以作为年度商业化主轴。</p>
+        </div>
+        <div class="tag">L1-L4 合伙人体系</div>
+      </div>
+
+      <div class="products">
+        <article class="product">
+          <div class="band">
+            <h3>L1 VIP 会员</h3>
+            <div class="price">¥1,980</div>
+          </div>
+          <div class="body"><p>入门体验，建立基础信任，适合作为低门槛成交与后续升级入口。</p></div>
+        </article>
+        <article class="product">
+          <div class="band">
+            <h3>L2 催眠疗愈导师</h3>
+            <div class="price">¥5万</div>
+          </div>
+          <div class="body"><p>VIP 合伙人，面向个人 IP 起步与副业变现人群。</p></div>
+        </article>
+        <article class="product">
+          <div class="band">
+            <h3>L3 催眠疗愈大师</h3>
+            <div class="price">¥16.8万</div>
+          </div>
+          <div class="body"><p>高级合伙人，强调独立交付、城市扎根和持续变现。</p></div>
+        </article>
+        <article class="product">
+          <div class="band">
+            <h3>L4 传承弟子</h3>
+            <div class="price">¥31万</div>
+          </div>
+          <div class="body"><p>创始合伙人，定位事业合伙、区域王者与长期利益绑定。</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="section-head">
+        <div>
+          <h2>年度推进路径</h2>
+          <p class="lead">年度计划将 2026 年 5 月至 2027 年 5 月拆成四个阶段：先收现金，再做事件营销，再做 IP 放大，最后团队化复制。</p>
+        </div>
+        <div class="tag">年度目标：营收 1000 万</div>
+      </div>
+
+      <div class="timeline">
+        <article class="phase">
+          <time>6-7月</time>
+          <h3>发售 · 快速收拢现金</h3>
+          <p>基于老客户私域，主推导师班、大师班、弟子班，双月目标 60-100 万。</p>
+        </article>
+        <article class="phase">
+          <time>8-10月</time>
+          <h3>事件营销 · 引爆影响力</h3>
+          <p>推进“100 个顽固性失眠者”事件营销，同步启动 IP 内容体系。</p>
+        </article>
+        <article class="phase">
+          <time>11月-1月</time>
+          <h3>IP 成型 · 公域放大</h3>
+          <p>短视频/直播成熟，渠道合作落地，私域持续成交。</p>
+        </article>
+        <article class="phase">
+          <time>2-5月</time>
+          <h3>团队完善 · 体系化复制</h3>
+          <p>搭建团队，建立 SOP，弟子开始独立成交，冲刺全年目标。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="assets">
+      <div class="section-head">
+        <div>
+          <h2>已沉淀交付资产</h2>
+          <p class="lead">以下资料来自当前飞书知识库结构，可作为章子康老师私教陪跑的阶段性交付资产库。</p>
+        </div>
+        <div class="tag">资料读取日期：2026.5.29</div>
+      </div>
+
+      <div class="assets">
+        <article class="asset">
+          <h3>知识 IP 策划案 V3</h3>
+          <p>包含优势、劣势、机会、风险与 IP 聚焦方向，是当前定位的核心文档。</p>
+          <a href="https://je2zunj9jh.feishu.cn/wiki/SRuTwwyGjicn9ZkqGLtcJP7RnAd" target="_blank" rel="noreferrer">打开飞书文档</a>
+        </article>
+        <article class="asset">
+          <h3>5 年商业计划</h3>
+          <p>明确使命、愿景、品牌定位、目标客群、市场策略和长期学院化方向。</p>
+          <a href="https://je2zunj9jh.feishu.cn/wiki/R9FbwZ2Siivzudk8N8UcRVBXnae" target="_blank" rel="noreferrer">打开飞书文档</a>
+        </article>
+        <article class="asset">
+          <h3>年度计划</h3>
+          <p>明确 2026.5-2027.5 的年度目标、阶段划分、内容体系、获客路径和成交路径。</p>
+          <a href="https://je2zunj9jh.feishu.cn/wiki/ZA9NwhKckiojzNkUJywcVxCHn5f" target="_blank" rel="noreferrer">打开飞书文档</a>
+        </article>
+        <article class="asset">
+          <h3>渠道合伙人体系</h3>
+          <p>形成 L1-L4 产品阶梯，包含课程权益、配货权益、分销权益和联合出书赠品。</p>
+          <a href="https://je2zunj9jh.feishu.cn/wiki/CSO8wLZf0iDUmbkxGXMcKRQrnwg" target="_blank" rel="noreferrer">打开飞书文档</a>
+        </article>
+        <article class="asset">
+          <h3>合伙人发售策划案</h3>
+          <p>发售周期 2026.5.29-7.5，目标 100 万，面向疗愈从业者、渠道商与现有学员升级。</p>
+          <a href="https://je2zunj9jh.feishu.cn/wiki/H9jvwvvnDiaqINkPdOjcC7wtnBe" target="_blank" rel="noreferrer">打开飞书文档</a>
+        </article>
+        <article class="asset">
+          <h3>陪跑会议记录</h3>
+          <p>已沉淀 5.8、5.19、5.20、5.21、5.22、5.27 等多次会议纪要。</p>
+          <a href="https://je2zunj9jh.feishu.cn/wiki/EVNWwMRWziXotSkMCtFcqSvLnIf" target="_blank" rel="noreferrer">打开飞书文档</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="gaps">
+      <div class="section-head">
+        <div>
+          <h2>建议补齐的交付内容</h2>
+          <p class="lead">为了让章子康老师的陪跑体验从“资料库”升级成“作战系统”，建议优先补齐以下 3 类可执行资产。</p>
+        </div>
+        <div class="tag">下一步优先级</div>
+      </div>
+
+      <div class="gaps">
+        <article class="gap">
+          <h3>短视频获客作战库</h3>
+          <p>建议补齐：100 条失眠疗愈选题、10 个固定栏目、30 条口播脚本、评论区引流话术、私信承接 SOP。</p>
+        </article>
+        <article class="gap">
+          <h3>直播获客发售台本</h3>
+          <p>建议补齐：3 场直播主题、开场留人话术、案例讲述模板、产品转场、报价逻辑、助教控场与直播后追单表。</p>
+        </article>
+        <article class="gap">
+          <h3>AI 助教执行系统</h3>
+          <p>建议补齐：会议纪要自动整理、每日内容生成、私域用户分层、合伙人咨询问诊表、周报/月报自动生成。</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="closing">
+      <div class="closing-inner">
+        <div>
+          <h2>当前最重要的不是继续扩方向，而是聚焦失眠入口，把章氏催眠疗愈做成可复制的信任系统。</h2>
+          <p>建议以“失眠疗愈结果验证”为第一增长抓手，以合伙人体系承接高客单商业化，同时用内容获客、直播发售和 AI 助教补齐规模化能力。</p>
+        </div>
+        <div class="panel">
+          <ul>
+            <li>第一优先级：完成 5.29-7.5 合伙人体系 100 万发售战役。</li>
+            <li>第二优先级：启动“100 个顽固性失眠者”事件营销。</li>
+            <li>第三优先级：补齐短视频、直播、私域追单三套 SOP。</li>
+            <li>第四优先级：建立弟子交付标准，降低后续平台化口碑风险。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
