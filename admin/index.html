@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>私教交付驾驶舱</title>
+  <style>
+    :root {
+      --ink: #182033;
+      --muted: #657083;
+      --line: #dfe5ed;
+      --paper: #fbfaf6;
+      --white: #ffffff;
+      --navy: #203a5f;
+      --teal: #2f8069;
+      --gold: #c98d2d;
+      --red: #b95044;
+      --shadow: 0 18px 44px rgba(24, 32, 51, 0.1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      width: min(1220px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 64px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+    }
+
+    .mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+    }
+
+    .sync {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 22px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+
+    .hero-main,
+    .panel,
+    .client-card,
+    .task-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 34px;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(24, 32, 51, 0.94), rgba(32, 58, 95, 0.82), rgba(47, 128, 105, 0.45)),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=82") center/cover;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #f4d99f;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 2px;
+      background: #f4d99f;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 18px 0 0;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .hero-main p {
+      max-width: 720px;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 18px;
+    }
+
+    .panel {
+      padding: 24px;
+    }
+
+    .panel h2,
+    .section-title h2 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.22;
+    }
+
+    .panel p,
+    .section-title p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .kpi {
+      min-height: 120px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .kpi span {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .kpi strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin: 32px 0 16px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      min-height: 38px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: #fff;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .filter.active {
+      color: #fff;
+      border-color: var(--navy);
+      background: var(--navy);
+    }
+
+    .clients {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .client-card {
+      overflow: hidden;
+    }
+
+    .client-head {
+      min-height: 150px;
+      padding: 22px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+    }
+
+    .client-head.guoran {
+      background:
+        linear-gradient(135deg, rgba(32, 58, 95, 0.95), rgba(201, 141, 45, 0.68)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=78") center/cover;
+    }
+
+    .client-head.zikang {
+      background:
+        linear-gradient(135deg, rgba(32, 58, 95, 0.95), rgba(47, 128, 105, 0.72)),
+        url("https://images.unsplash.com/photo-1499728603263-13726abce5fd?auto=format&fit=crop&w=900&q=78") center/cover;
+    }
+
+    .client-head.student {
+      background:
+        linear-gradient(135deg, rgba(32, 58, 95, 0.95), rgba(109, 90, 143, 0.72)),
+        url("https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=78") center/cover;
+    }
+
+    .client-type {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      padding: 4px 9px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.18);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .client-head h3 {
+      margin: 18px 0 8px;
+      font-size: 30px;
+      line-height: 1.16;
+    }
+
+    .client-head p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .client-body {
+      padding: 20px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .meta div {
+      min-height: 74px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcfe;
+    }
+
+    .meta span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .meta strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .progress {
+      height: 10px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #edf1f5;
+    }
+
+    .progress i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--gold), var(--teal));
+    }
+
+    .client-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      color: var(--navy);
+      background: #fff;
+      font-weight: 900;
+    }
+
+    .button.primary {
+      color: #fff;
+      border-color: var(--navy);
+      background: var(--navy);
+    }
+
+    .tasks {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .task-card {
+      min-height: 170px;
+      padding: 18px;
+    }
+
+    .task-card small {
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .task-card h3 {
+      margin: 10px 0 8px;
+      font-size: 21px;
+      line-height: 1.25;
+    }
+
+    .task-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .note {
+      margin-top: 26px;
+      padding: 18px;
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      color: var(--muted);
+      background: #fff;
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .clients,
+      .tasks {
+        grid-template-columns: 1fr;
+      }
+
+      .kpis {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .shell {
+        width: min(100% - 28px, 1220px);
+        padding-top: 24px;
+      }
+
+      .topbar,
+      .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-main {
+        padding: 24px;
+      }
+
+      .kpis,
+      .meta {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="mark">驾</span><span>私教交付驾驶舱</span></div>
+      <div class="sync">当前版本：2026-05-29 交付版</div>
+    </header>
+
+    <section class="hero" aria-label="总览">
+      <div class="hero-main">
+        <div>
+          <div class="eyebrow">Benson 私教交付总控</div>
+          <h1>所有客户与学员进展，一屏掌握。</h1>
+          <p>这里是你自己看的交付后台，用来查看每个客户/学员的阶段、交付物、下一步动作，并快速跳转到对应的专属交付页面。</p>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <h2>本周关注</h2>
+        <p>优先处理“正在发售”和“定位/产品未闭环”的学员，确保每次会议后都有可视化交付物沉淀。</p>
+      </aside>
+    </section>
+
+    <section class="kpis" aria-label="关键指标">
+      <div class="kpi"><span>当前项目/学员</span><strong id="kpi-total">-</strong></div>
+      <div class="kpi"><span>已生成交付页</span><strong id="kpi-pages">-</strong></div>
+      <div class="kpi"><span>正在发售</span><strong id="kpi-launch">-</strong></div>
+      <div class="kpi"><span>待补齐档案</span><strong id="kpi-pending">-</strong></div>
+    </section>
+
+    <section aria-label="客户与学员列表">
+      <div class="section-title">
+        <div>
+          <h2>客户与学员</h2>
+          <p>每个客户/学员都应该有独立交付入口，避免不同客户资料混在同一个页面。</p>
+        </div>
+        <div class="filters" aria-label="状态筛选">
+          <button class="filter active" data-filter="all">全部</button>
+          <button class="filter" data-filter="launch">发售中</button>
+          <button class="filter" data-filter="coaching">私教陪跑</button>
+        </div>
+      </div>
+
+      <div class="clients" id="clients">
+        <article class="client-card" data-status="launch">
+          <div class="client-head guoran">
+            <span class="client-type">企业项目 · 发售交付</span>
+            <h3>国然教育</h3>
+            <p>2026 暑期夏令营发售项目，当前核心是方案落地与 30 天执行陪跑。</p>
+          </div>
+          <div class="client-body">
+            <div class="meta">
+              <div><span>当前阶段</span><strong>发售执行</strong></div>
+              <div><span>进度</span><strong>70%</strong></div>
+              <div><span>下一动作</span><strong>公开课转化</strong></div>
+            </div>
+            <div class="progress" aria-label="国然教育进度 70%"><i style="width: 70%"></i></div>
+            <div class="client-actions">
+              <a class="button primary" href="/clients/guoran/">打开发售方案</a>
+              <a class="button" href="/clients/guoran/roadmap.html">打开 30 天路线图</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section aria-label="本周任务">
+      <div class="section-title">
+        <div>
+          <h2>本周交付动作</h2>
+          <p>这里放你作为私教主理人需要盯的动作，不是给客户看的。</p>
+        </div>
+      </div>
+
+      <div class="tasks">
+        <article class="task-card">
+          <small>01 · 客户隔离</small>
+          <h3>每个客户只发自己的专属链接</h3>
+          <p>国然只发国然方案/路线图，章子康只发章子康交付页，根首页不直接发给客户。</p>
+        </article>
+        <article class="task-card">
+          <small>02 · 动态数据</small>
+          <h3>把飞书多维表格作为进展数据源</h3>
+          <p>后续可用学员名称、阶段、进度、下一次会议、待交付物字段驱动这个驾驶舱。</p>
+        </article>
+        <article class="task-card">
+          <small>03 · 权限升级</small>
+          <h3>给后台加密码或登录</h3>
+          <p>如果你要放真实客户数据，建议启用 Netlify 密码保护或做一个简易登录页。</p>
+        </article>
+      </div>
+
+      <div class="note">
+        说明：当前页面是静态驾驶舱原型，适合先跑通交付体验。下一步可以接飞书表格，让学员进度、任务状态、会议日期和交付物自动更新。
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const filters = document.querySelectorAll(".filter");
+    const clientsWrap = document.querySelector("#clients");
+    const kpis = {
+      total: document.querySelector("#kpi-total"),
+      pages: document.querySelector("#kpi-pages"),
+      launch: document.querySelector("#kpi-launch"),
+      pending: document.querySelector("#kpi-pending")
+    };
+
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "\"": "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
+    function cardHtml(student) {
+      const progress = Math.max(0, Math.min(100, Number(student.progress) || 0));
+      const deliveryUrl = student.deliveryUrl || "";
+      const wikiUrl = student.wikiUrl || "";
+      const primary = deliveryUrl
+        ? `<a class="button primary" href="${escapeHtml(deliveryUrl)}">打开交付页</a>`
+        : `<a class="button primary" href="${escapeHtml(wikiUrl)}" target="_blank" rel="noreferrer">打开飞书档案</a>`;
+      const secondary = deliveryUrl && wikiUrl
+        ? `<a class="button" href="${escapeHtml(wikiUrl)}" target="_blank" rel="noreferrer">打开飞书档案</a>`
+        : `<a class="button" href="/FEISHU_DYNAMIC_SETUP.md">待生成交付页</a>`;
+
+      return `
+        <article class="client-card" data-status="${escapeHtml(student.status || "coaching")}">
+          <div class="client-head ${student.name === "章子康老师" ? "zikang" : "student"}">
+            <span class="client-type">${escapeHtml(student.type || "私教学员 · 年度陪跑")}</span>
+            <h3>${escapeHtml(student.name)}</h3>
+            <p>${escapeHtml(student.summary || "已接入飞书知识库链接，等待 API 授权后自动同步档案字段。")}</p>
+          </div>
+          <div class="client-body">
+            <div class="meta">
+              <div><span>当前阶段</span><strong>${escapeHtml(student.stage || "待同步")}</strong></div>
+              <div><span>进度</span><strong>${progress}%</strong></div>
+              <div><span>${student.nextMeeting ? "下次会议" : "下一动作"}</span><strong>${escapeHtml(student.nextMeeting || student.nextAction || "读取飞书档案")}</strong></div>
+            </div>
+            <div class="progress" aria-label="${escapeHtml(student.name)}进度 ${progress}%"><i style="width: ${progress}%"></i></div>
+            <div class="client-actions">${primary}${secondary}</div>
+          </div>
+        </article>
+      `;
+    }
+
+    async function loadStudents() {
+      const seed = await loadSeedStudents();
+      try {
+        const response = await fetch("/.netlify/functions/feishu-records", { cache: "no-store" });
+        if (!response.ok) throw new Error("feishu records unavailable");
+        const data = await response.json();
+        if (!data.ok || !Array.isArray(data.students)) throw new Error("invalid feishu records");
+        document.querySelector(".sync").textContent = `飞书已同步：${new Date(data.updatedAt).toLocaleString("zh-CN")}`;
+        return mergeStudents(seed, data.students);
+      } catch (error) {
+        document.querySelector(".sync").textContent = "当前显示：本地学员清单";
+        return seed;
+      }
+    }
+
+    async function loadSeedStudents() {
+      try {
+        const response = await fetch("/data/students.json", { cache: "no-store" });
+        if (!response.ok) throw new Error("students seed unavailable");
+        return await response.json();
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function mergeStudents(seed, live) {
+      const seedByWiki = new Map(seed.filter((item) => item.wikiUrl).map((item) => [item.wikiUrl, item]));
+      const liveByWiki = new Set();
+      const merged = live.map((item) => {
+        if (item.wikiUrl) liveByWiki.add(item.wikiUrl);
+        return { ...(seedByWiki.get(item.wikiUrl) || {}), ...item };
+      });
+      seed.forEach((item) => {
+        if (!item.wikiUrl || !liveByWiki.has(item.wikiUrl)) merged.push(item);
+      });
+      return merged;
+    }
+
+    function updateKpis(students) {
+      const staticProjects = 1;
+      const all = staticProjects + students.length;
+      const generatedPages = staticProjects + students.filter((item) => item.deliveryUrl).length;
+      const launch = staticProjects + students.filter((item) => String(item.status || "").includes("launch")).length;
+      const pending = students.filter((item) => !item.deliveryUrl).length;
+      kpis.total.textContent = all;
+      kpis.pages.textContent = generatedPages;
+      kpis.launch.textContent = launch;
+      kpis.pending.textContent = pending;
+    }
+
+    function applyFilter(value) {
+      document.querySelectorAll(".client-card").forEach((client) => {
+        const show = value === "all" || client.dataset.status.includes(value);
+        client.style.display = show ? "" : "none";
+      });
+    }
+
+    filters.forEach((filter) => {
+      filter.addEventListener("click", () => {
+        filters.forEach((item) => item.classList.remove("active"));
+        filter.classList.add("active");
+        applyFilter(filter.dataset.filter);
+      });
+    });
+
+    loadStudents().then((students) => {
+      clientsWrap.insertAdjacentHTML("beforeend", students.map(cardHtml).join(""));
+      updateKpis(students);
+    });
+  </script>
+</body>
+</html>
